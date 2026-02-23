@@ -79,14 +79,34 @@ class RenderRule {
     /**
      * Default meta transformer for link attributes
      *
-     * Converts link meta object to HTML attributes. By default, just
-     * returns the meta as-is.
+     * Converts DatoCMS meta array format to HTML attributes.
+     * Meta format: [{"id": "attr_name", "value": "attr_value"}, ...]
+     * Output: ["attr_name" => "attr_value", ...]
      *
      * @param array $context Context with 'node' and 'meta' keys
      *
      * @return array|null Transformed attributes or null
      */
     public function defaultMetaTransformer(array $context): ?array {
-        return $context['meta'] ?? null;
+        $meta = $context['meta'] ?? null;
+        
+        if ($meta === null) {
+            return null;
+        }
+        
+        // If meta is already an associative array, return as-is
+        if (!isset($meta[0])) {
+            return $meta;
+        }
+        
+        // Convert array of objects format to associative array
+        $result = [];
+        foreach ($meta as $item) {
+            if (isset($item['id']) && isset($item['value'])) {
+                $result[$item['id']] = $item['value'];
+            }
+        }
+        
+        return !empty($result) ? $result : null;
     }
 }
