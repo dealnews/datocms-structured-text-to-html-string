@@ -1,0 +1,36 @@
+{
+    "name": "dealnews/datocms-structured-text-to-html-string",
+    "description": "Convert DatoCMS Structured Text field to HTML string",
+    "type": "library",
+    "keywords": [
+        "datocms",
+        "structured-text",
+        "html",
+        "renderer"
+    ],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "DealNews",
+            "homepage": "https://github.com/dealnews"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "DealNews\\StructuredText\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DealNews\\StructuredText\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
